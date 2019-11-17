@@ -7,50 +7,104 @@ import CardDeck from "./CardDeck";
 class App extends Component{
     state = {
         cards: [],
-        type: ''
+        hand: ''
     };
     generate = () => {
         let deck = new CardDeck();
         let cards = deck.getCards(5);
         this.setState({cards});
-        let royalFlush = [];
-        let straightFlush = {
-            spades: 0,
-            diams: 0,
-            hearts: 0,
-            clubs: 0
-        };
+        let royalFlush = 0;
+        let suits = {spades: 0, diams: 0, hearts: 0, clubs: 0};
+        let ranks = {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, a: 0, j: 0, q: 0, k: 0};
         setTimeout(() => {
             for(let cardArr of this.state.cards){
-                if(cardArr[0].rank === 'a' || cardArr[0].rank ==='j' || cardArr[0].rank === 'q' || cardArr[0].rank === 'k'){
-                    royalFlush.push(cardArr[0].rank);
-                }
                 switch (cardArr[0].suit) {
                     case 'spades':
-                        straightFlush.spades++;
+                        suits.spades++;
                         break;
                     case 'diams':
-                        straightFlush.diams++;
+                        suits.diams++;
                         break;
                     case 'hearts':
-                        straightFlush.hearts++;
+                        suits.hearts++;
                         break;
                     case 'clubs':
-                        straightFlush.clubs++;
+                        suits.clubs++;
                         break;
                     default:
                         console.error('Incorrect suit value')
                 }
+                switch (cardArr[0].rank) {
+                    case 2:
+                        ranks[2]++;
+                        break;
+                    case 3:
+                        ranks[3]++;
+                        break;
+                    case 4:
+                        ranks[4]++;
+                        break;
+                    case 5:
+                        ranks[5]++;
+                        break;
+                    case 6:
+                        ranks[6]++;
+                        break;
+                    case 7:
+                        ranks[7]++;
+                        break;
+                    case 8:
+                        ranks[8]++;
+                        break;
+                    case 9:
+                        ranks[9]++;
+                        break;
+                    case 10:
+                        ranks[10]++;
+                        break;
+                    case 'a':
+                        ranks['a']++;
+                        break;
+                    case 'j':
+                        ranks['j']++;
+                        break;
+                    case 'q':
+                        ranks['q']++;
+                        break;
+                    case 'k':
+                        ranks['k']++;
+                        break;
+                    default:
+                        console.error('Incorrect rank value')
+                }
+                if(cardArr[0].rank === 'a' || cardArr[0].rank ==='j' || cardArr[0].rank === 'q' || cardArr[0].rank === 'k' || cardArr[0].rank === 10){
+                    royalFlush++;
+                }
+
             }
-            if(royalFlush.length === 5){
-                let type = 'Royal flush';
-                this.setState({type});
-                console.log('Royal flush', royalFlush);
-                royalFlush = [];
-            } else if(straightFlush.spades === 5 || straightFlush.diams === 5 || straightFlush.hearts === 5 || straightFlush.clubs === 5){
-                let type = 'Straight flush';
-                this.setState({type});
-                console.log('Straight flush', straightFlush);
+            if(suits.spades === 5 || suits.diams === 5 || suits.hearts === 5 || suits.clubs === 5){
+                if(royalFlush === 5){
+                    this.setState({hand: 'Royal flush'});
+                    console.log('Royal flush');
+                } else {
+                    this.setState({hand: 'Flush'});
+                    console.log('Flush');
+                }
+            } else {
+                this.setState({hand: ''});
+            }
+            for(let r in ranks){
+                if(ranks[r] === 4){
+                    this.setState({hand: 'Four of a kind'});
+                    console.log('Four of a kind')
+                } else if(ranks[r] === 3){
+                    for(let r2 in ranks){
+                        if(ranks[r2] === 2){
+                            this.setState({hand: 'Full house'});
+                            console.log('full house');
+                        }
+                    }
+                }
             }
 
         }, 0);
@@ -67,7 +121,7 @@ class App extends Component{
                             suit={cardArr[0].suit}/>
                     ))}
                 </div>
-                <span className='type'>{this.state.type}</span>
+                <span className='hand'>{this.state.hand}</span>
             </div>
         )
     }
