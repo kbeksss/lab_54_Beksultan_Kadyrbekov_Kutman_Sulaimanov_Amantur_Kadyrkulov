@@ -11,7 +11,8 @@ class CardDeck {
         console.log(this.cards);
     }
     getCard(){
-
+        const card = this.cards[Math.floor(Math.random() * this.cards.length)];
+        console.log(card);
     }
     getCards(howMany){
 

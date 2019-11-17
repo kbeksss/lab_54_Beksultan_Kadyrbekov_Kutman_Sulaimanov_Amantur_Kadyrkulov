@@ -2,8 +2,12 @@ import React from 'react';
 import './App.css';
 import './cards.css';
 import Card from "./Component/Card/Card";
+import CardDeck from "./CardDeck";
+
 
 function App() {
+    let card = new CardDeck();
+    card.getCard();
   return (
     <div className="App">
       <div className='playingCards'>

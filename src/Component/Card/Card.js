@@ -4,7 +4,6 @@ import CardDeck from "../../CardDeck";
 const Card = (props) => {
     let className = 'card rank-' + props.rank + ' ' + props.suit;
     let symbol;
-    let card = new CardDeck();
     switch (props.suit) {
         case 'spades':
             symbol = '♠';
