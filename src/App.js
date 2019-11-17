@@ -6,14 +6,20 @@ import CardDeck from "./CardDeck";
 
 
 function App() {
-    let card = new CardDeck();
-    card.getCard();
+    let deck = new CardDeck();
+    console.log(deck.getCard());
+    let cards = deck.getCards(5);
+    console.log(cards);
   return (
     <div className="App">
+
       <div className='playingCards'>
-          <Card rank='7' suit='spades'/>
-          <Card rank='q' suit='clubs'/>
-          <Card rank='a' suit='hearts'/>
+          {cards.map((cardArr, index) => (
+              <Card
+                  key={index}
+                  rank={cardArr[0].rank}
+                  suit={cardArr[0].suit}/>
+          ))}
       </div>
     </div>
   );
