@@ -10,14 +10,12 @@ class CardDeck {
         }
     }
     getCard(){
-        let index = Math.floor(Math.random() * this.cards.length);
-        return this.cards.splice(index, 1);
+        return this.cards.splice(Math.floor(Math.random() * this.cards.length), 1);
     }
     getCards(howMany){
         let cards = [];
         for(let i = 0; i < howMany; i++){
-            let index = Math.floor(Math.random() * this.cards.length);
-            cards.push(this.cards.splice(index, 1));
+            cards.push(this.getCard());
         }
         return cards;
     }
