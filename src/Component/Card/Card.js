@@ -1,5 +1,4 @@
 import React from 'react';
-import CardDeck from "../../CardDeck";
 
 const Card = (props) => {
     let className = 'card rank-' + props.rank + ' ' + props.suit;
