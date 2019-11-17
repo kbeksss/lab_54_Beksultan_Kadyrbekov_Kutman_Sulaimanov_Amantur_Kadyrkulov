@@ -12,7 +12,6 @@ class App extends Component{
         let deck = new CardDeck();
         let cards = deck.getCards(5);
         this.setState({cards});
-        console.log(this.state.cards);
     };
     render() {
         return(

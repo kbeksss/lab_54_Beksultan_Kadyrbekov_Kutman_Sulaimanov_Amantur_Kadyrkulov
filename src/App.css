@@ -2,4 +2,7 @@
   text-align: center;
   margin: 30px 10px;
 }
+span.rank{
+  text-transform: uppercase;
+}
 

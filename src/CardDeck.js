@@ -8,7 +8,6 @@ class CardDeck {
                 this.cards.push({suit: suits[i], rank: ranks[j]})
             }
         }
-        console.log(this.cards);
     }
     getCard(){
         let index = Math.floor(Math.random() * this.cards.length);
