@@ -15,7 +15,7 @@ class App extends Component{
         this.setState({cards});
         let royalFlush = 0;
         let suits = {spades: 0, diams: 0, hearts: 0, clubs: 0};
-        let ranks = {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, a: 0, j: 0, q: 0, k: 0};
+        let ranks = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0};
         setTimeout(() => {
             for(let cardArr of this.state.cards){
                 switch (cardArr[0].suit) {
@@ -35,6 +35,9 @@ class App extends Component{
                         console.error('Incorrect suit value')
                 }
                 switch (cardArr[0].rank) {
+                    case 'a':
+                        ranks[1]++;
+                        break;
                     case 2:
                         ranks[2]++;
                         break;
@@ -62,17 +65,14 @@ class App extends Component{
                     case 10:
                         ranks[10]++;
                         break;
-                    case 'a':
-                        ranks['a']++;
-                        break;
                     case 'j':
-                        ranks['j']++;
+                        ranks[11]++;
                         break;
                     case 'q':
-                        ranks['q']++;
+                        ranks[12]++;
                         break;
                     case 'k':
-                        ranks['k']++;
+                        ranks[13]++;
                         break;
                     default:
                         console.error('Incorrect rank value')
@@ -87,6 +87,11 @@ class App extends Component{
                     this.setState({hand: 'Royal flush'});
                     console.log('Royal flush');
                 } else {
+                    for(let r in ranks){
+                        if(ranks[r] === 1 && ranks[r+1] ===1 && ranks[r+2] === 1 && ranks[r+3]===1 && ranks[r+4]===1){
+                            console.log('kjkkljlkj')
+                        }
+                    }
                     this.setState({hand: 'Flush'});
                     console.log('Flush');
                 }
