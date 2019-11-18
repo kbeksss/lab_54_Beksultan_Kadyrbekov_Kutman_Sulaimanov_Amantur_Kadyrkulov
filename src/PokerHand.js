@@ -22,6 +22,8 @@ class PokerHand{
 
         if(ranks === 3) hand = 'Three of a kind';
 
+        if(ranks === 6) hand = 'Four of a kind';
+
         if(suits === 10) hand = 'Flush';
 
         return hand;
