@@ -10,4 +10,11 @@
 span.rank{
   text-transform: uppercase;
 }
+.hand{
+  font-size: 20px;
+}
+.card{
+  vertical-align: top;
+}
+
 
